@@ -1,5 +1,5 @@
 import { Linkedin, Instagram, Mail } from 'lucide-react';
-import logo from '../../../project/assets/logo.png'
+import logo from '../../assets/logo.png'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
