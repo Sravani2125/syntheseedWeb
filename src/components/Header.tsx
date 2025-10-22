@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import logo from '../../../project/assets/logo.png';
+import logo from '../../assets/logo.png';
 const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
