@@ -1,69 +1,103 @@
 import { Zap, Target, FileText, Lightbulb, TrendingUp, Sparkles } from 'lucide-react';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import FeatureCard from './FeatureCard';
+import { useTheme } from '../contexts/ThemeContext';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import illustration from '../../assets/illustration.png';
 
 const products = [
   {
     icon: Lightbulb,
     title: 'Instant Idea Expansion',
-    description: 'Transform a single thought into a comprehensive concept with AI-powered brainstorming that expands your ideas in seconds.'
+    description: 'AI-powered brainstorming turns one thought into a fully developed concept.'
   },
   {
     icon: Target,
-    title: 'Real-Time Feasibility Analysis',
-    description: 'Get instant feedback on your ideas with intelligent analysis that evaluates market potential, technical requirements, and resource needs.'
+    title: 'Real-Time Feasibility',
+    description: 'Get immediate feedback on market fit, resources and technical needs.'
   },
   {
     icon: FileText,
-    title: 'Effortless Pitch & Plan Automation',
-    description: 'Generate professional pitch decks and detailed business plans automatically, saving hours of work and ensuring nothing is overlooked.'
+    title: 'Pitch & Plan Automation',
+    description: 'Produce decks and business plans in seconds—never miss details.'
   },
   {
     icon: Sparkles,
-    title: 'AI-Powered Insights',
-    description: 'Leverage artificial intelligence to uncover hidden opportunities and innovative solutions you might have missed.'
+    title: 'AI Insights',
+    description: 'Find new opportunities and solutions automatically—beyond what you imagined.'
   },
   {
     icon: TrendingUp,
-    title: 'Innovation Acceleration',
-    description: 'Speed up your innovation process from concept to execution with intelligent automation and strategic guidance.'
+    title: 'Innovation Accelerator',
+    description: 'Fast-track your journey from concept to launch using strategy automation.'
   },
   {
     icon: Zap,
     title: 'Digital Integration',
-    description: 'Seamlessly integrate human creativity with AI capabilities to maximize your potential and achieve breakthrough results.'
+    description: 'Combine human creativity with AI intelligence for maximum results.'
   }
 ];
 
 const ProductFeaturesSection = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
-    <section id="product" className="py-12">
+    <section
+      id="product"
+      className="py-12 transition-colors duration-500"
+      style={{
+        background: isDark
+          ? 'linear-gradient(135deg, #10131d 70%, #0B1224 100%)'
+          : 'linear-gradient(135deg, #f3fdff 70%, #e9f2fd 100%)',
+      }}
+    >
       <div className="container mx-auto px-6">
+        {/* Centered Heading and Subtitle */}
+        <div className="mb-12 text-center max-w-3xl mx-auto">
+          <p className="text-sm font-semibold tracking-widest text-cyan-500 mb-2">PRODUCT</p>
+          <h2 className={`text-3xl font-bold mb-3 ${isDark ? 'text-cyan-400' : 'text-cyan-700'}`}>
+            Everything you need to go from spark to strategy
+          </h2>
+          <p className={`text-lg ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+            Capture and expand ideas, validate with AI, research patents deeply, align go-to-market plans, and build ideas—all in one place.
+          </p>
+        </div>
+        {/* Content: Illustration and Grid */}
         <div
           ref={ref}
-          className={`max-w-6xl mx-auto transition-all duration-1000 ${
+          className={`max-w-[1500px] mx-auto transition-all duration-1000 flex flex-col lg:flex-row items-center lg:items-start gap-16 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <div className="text-center mb-16">
-           <p className="text-sm font-semibold tracking-widest text-cyan-500 mb-1">PRODUCT</p>
-            <p className="text-3xl text-gradient font-bold max-w-3xl mx-auto mb-4">
-              Everything you need to go from spark to strategy
-            </p>
-            <p className="text-lg text-secondary max-w-2xl mx-auto">
-              Capture and expand ideas, validate with AI, research patents deeply, align go-to-market plans, and build ideas — all in one place.
-            </p>
+          {/* Illustration column */}
+          <div className="flex-shrink-0 flex justify-center items-center w-full lg:w-[430px]">
+            <img
+              src={illustration}
+              alt="Product Illustration"
+              // className="object-contain h-[545px] w-auto max-w-full rounded-xl shadow-lg"
+              style={{
+                minHeight: 360,
+                maxHeight: 570,
+              }}
+            />
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product, index) => (
-              <FeatureCard
-                key={index}
-                {...product}
-                delay={index * 100}
-              />
-            ))}
+          {/* Card Grid column */}
+          <div className="flex-1 w-full flex flex-col">
+            <div className="relative flex flex-col items-center select-none">
+              <div className="flex flex-row justify-center gap-x-10 z-10 mb-[-40px]">
+                <FeatureCard {...products[0]} delay={0} />
+              </div>
+              <div className="flex flex-row justify-center gap-x-10 z-20 mb-[-40px]">
+                <FeatureCard {...products[1]} delay={60} />
+                <FeatureCard {...products[2]} delay={120} />
+              </div>
+              <div className="flex flex-row justify-center gap-x-10 z-30">
+                <FeatureCard {...products[3]} delay={180} />
+                <FeatureCard {...products[4]} delay={240} />
+                <FeatureCard {...products[5]} delay={300} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

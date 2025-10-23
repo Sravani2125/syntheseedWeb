@@ -1,143 +1,127 @@
-import { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
+const steps = [
+  {
+    number: 'STEP 1',
+    title: 'Capture and Develop',
+    description: 'Capture your thoughts and start developing your idea.',
+    image: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
+  {
+    number: 'STEP 2',
+    title: 'Expand and Validate',
+    description:
+      'Let AI surface assumptions, risks, and market signals. Collaborate with expert agents and prioritize the strongest wedge to strengthen your idea.',
+    image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
+  {
+    number: 'STEP 3',
+    title: 'Structure and Finalize',
+    description:
+      'Deep dive into patent research. Shape pricing, packaging, and go-to-market paths.',
+    image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800'
+  },
+  {
+    number: 'STEP 4',
+    title: 'Build and Launch',
+    description:
+      'Produce and export investor‑ready briefs. Finalize plans and build your idea. Ready it for launch.',
+    image: 'https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=800'
+  }
+];
+
+const circleSize = 170;
 
 const ProcessSection = () => {
   const { ref, isVisible } = useScrollAnimation();
-  const [currentStep, setCurrentStep] = useState(0);
-
-  const steps = [
-    {
-      number: 'STEP 1',
-      title: 'Capture and Develop',
-      description: 'Capture your thoughts and start developing your idea.',
-      image: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800'
-    },
-    {
-      number: 'STEP 2',
-      title: 'Expand and Validate',
-      description: 'Let AI surface assumptions, risks, and market signals. Collaborate with expert agents and prioritize the strongest wedge to strengthen your idea.',
-      image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800'
-    },
-    {
-      number: 'STEP 3',
-      title: 'Structure and Finalize',
-      description: 'Deep dive into patent research and shape pricing, packaging, and go-to-market paths.',
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800'
-    },
-    {
-      number: 'STEP 4',
-      title: 'Build and Launch',
-      description: 'Produce and export investor‑ready briefs, finalize plans, build your idea and ready it for launch.',
-      image: 'https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=800'
-    }
-  ];
-
-  // Only allow next if not at the last step
-  const nextStep = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep((prev) => prev + 1);
-    }
-  };
-  // Only allow prev if not at the first step
-  const prevStep = () => {
-    if (currentStep > 0) {
-      setCurrentStep((prev) => prev - 1);
-    }
-  };
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+  const cyan = "#06b6d4";
 
   return (
-    <section id="process" className="py-12 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent relative overflow-hidden">
+    <section
+      id="process"
+      style={{
+        background: isDark ? '#181e27' : '#f5fafd',
+        color: isDark ? '#fff' : '#181e27',
+      }}
+      className="py-16 w-full"
+    >
       <div className="container mx-auto px-6">
         <div
           ref={ref}
           className={`transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         >
-          <div className="text-center mb-12">
-            <p className="text-sm font-semibold tracking-widest text-cyan-500 mb-1">HOW IT WORKS</p>
-            <h2 className="text-3xl md:text-3xl font-bold text-primary mb-3">
-              <span className="text-gradient">From spark → reality in 4 steps</span>
-            </h2>
+          <div className="text-center mb-2">
+            <span
+              className="inline-block rounded-full px-3 py-1 font-semibold tracking-wide uppercase"
+              style={{
+                fontSize: "0.95rem",
+                background: isDark ? "#232a37" : "#ecfeff",
+                color: cyan,
+                letterSpacing: "0.04em"
+              }}
+            >
+              How it works
+            </span>
           </div>
-
-          <div className="relative max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Slide Images Horizontally */}
-              <div className="relative h-[350px] lg:h-[400px] order-2 lg:order-1 overflow-hidden">
+          <h2
+            className="text-4xl font-extrabold tracking-tight mb-3 text-center"
+            style={{ color: cyan }}
+          >
+            From spark &rarr; reality in 4 steps
+          </h2>
+          <div
+            className="text-center max-w-2xl mx-auto text-base font-medium mb-10"
+            style={{ color: isDark ? '#e6e6e6' : '#333' }}
+          >
+            Capture and expand ideas, validate with AI and experts, research patents deeply, align go-to-market plans, and build your idea—all in one place.
+          </div>
+          {/* Steps */}
+          <div className="flex flex-row flex-nowrap justify-center items-start w-full gap-x-2 max-w-[1460px] mx-auto">
+            {steps.map((step) => (
+              <div
+                key={step.number}
+                className="flex flex-col items-center text-center"
+                style={{
+                  width: 'min(370px,24vw)',
+                  minWidth: 240,
+                  maxWidth: 370
+                }}
+              >
                 <div
-                  className="absolute inset-0 w-full h-full flex transition-transform duration-700"
+                  className="rounded-full flex items-center justify-center border-4 shadow-lg bg-white dark:bg-[#232a37] mb-2"
                   style={{
-                    transform: `translateX(-${currentStep * 100}%)`,
-                    transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
-                  }}>
-                  {steps.map((step) => (
-                    <div key={step.title} className="relative w-full h-full shrink-0 px-1">
-                      <div className="h-full rounded-2xl overflow-hidden shadow-2xl">
-                        <img
-                          src={step.image}
-                          alt={step.title}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                      </div>
-                    </div>
-                  ))}
+                    width: circleSize,
+                    height: circleSize,
+                    borderColor: cyan,
+                  }}
+                >
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    className="rounded-full object-cover"
+                    style={{
+                      width: circleSize - 28,
+                      height: circleSize - 28,
+                    }}
+                  />
+                </div>
+                <div
+                  className="font-bold text-base uppercase tracking-widest mt-2"
+                  style={{ color: cyan }}
+                >
+                  {step.number}
+                </div>
+                <div className="font-semibold text-xl mt-1 mb-2" style={{ color: isDark ? '#fff' : '#181e27' }}>
+                  {step.title}
+                </div>
+                <div className="text-base leading-relaxed px-2" style={{ color: isDark ? '#e0e0e0' : '#555', whiteSpace: "pre-line" }}>
+                  {step.description}
                 </div>
               </div>
-
-              {/* Slide Content Horizontally */}
-              <div className="order-1 lg:order-2 space-y-6 overflow-hidden">
-                <div
-                  className="w-full flex transition-transform duration-700"
-                  style={{
-                    transform: `translateX(-${currentStep * 100}%)`,
-                    transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
-                  }}>
-                  {steps.map((step, idx) => (
-                    <div key={step.title} className="w-full shrink-0">
-                      <div className="text-cyan-400 font-bold text-xs tracking-wider mb-3">{step.number}</div>
-                      <h3 className="text-3xl md:text-3xl font-bold text-primary mb-4 leading-tight">{step.title}</h3>
-                      <p className="text-base text-secondary leading-relaxed mb-8">{step.description}</p>
-                      <div className="flex items-center space-x-6">
-                        <button
-                          onClick={prevStep}
-                          disabled={currentStep === 0}
-                          className={`w-14 h-14 glass-effect hover:bg-cyan-500 text-primary hover:text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-500
-                            ${currentStep === 0 ? 'opacity-40 cursor-not-allowed hover:bg-inherit hover:text-primary border-none' : ''}`}
-                          aria-label="Previous step"
-                        >
-                          <ChevronLeft className="w-6 h-6" />
-                        </button>
-                        <div className="flex space-x-3">
-                          {steps.map((_, index) => (
-                            <button
-                              key={index}
-                              onClick={() => setCurrentStep(index)}
-                              className={`transition-all duration-300 rounded-full ${
-                                index === idx
-                                  ? 'w-12 h-3 bg-cyan-500'
-                                  : 'w-3 h-3 bg-cyan-500/30 hover:bg-cyan-500/50'
-                              }`}
-                              aria-label={`Go to step ${index + 1}`}
-                            />
-                          ))}
-                        </div>
-                        <button
-                          onClick={nextStep}
-                          disabled={currentStep === steps.length - 1}
-                          className={`w-14 h-14 glass-effect hover:bg-cyan-500 text-primary hover:text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-500
-                            ${currentStep === steps.length - 1 ? 'opacity-40 cursor-not-allowed hover:bg-inherit hover:text-primary border-none' : ''}`}
-                          aria-label="Next step"
-                        >
-                          <ChevronRight className="w-6 h-6" />
-                        </button>
-                      </div>
-                      <div className="mt-8 text-secondary text-sm">{idx + 1} / {steps.length}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
