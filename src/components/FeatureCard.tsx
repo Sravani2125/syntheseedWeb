@@ -1,4 +1,5 @@
 import { LucideIcon } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface FeatureCardProps {
   icon: LucideIcon;
@@ -8,16 +9,50 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = ({ icon: Icon, title, description, delay = 0 }: FeatureCardProps) => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
     <div
-      className="glass-effect p-8 rounded-2xl hover:scale-105 transition-all duration-300 group"
-      style={{ animationDelay: `${delay}ms` }}
+      className="relative flex items-center justify-center"
+      style={{
+        animationDelay: `${delay}ms`,
+        width: 170,
+        height: 170,
+      }}
     >
-      <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300">
-        <Icon className="w-8 h-8 text-white" />
+      <div
+        className={`transform rotate-45 flex flex-col items-center justify-center shadow-lg border transition-colors duration-300
+        ${isDark ? 'bg-[#10131d] border-cyan-500' : 'bg-white border-cyan-400'} 
+        `}
+        style={{
+          width: 150,
+          height: 150,
+        }}
+      >
+        <div className="flex flex-col items-center justify-center -rotate-45 w-full px-2 py-1">
+          <div
+            className={`flex items-center justify-center rounded-full shadow-sm mb-1
+              ${isDark
+                ? 'bg-gradient-to-br from-cyan-700 to-cyan-400'
+                : 'bg-gradient-to-br from-cyan-400 to-cyan-600'}
+            `}
+            style={{ width: 26, height: 26 }}
+          >
+            <Icon className="w-4 h-4 text-white" />
+          </div>
+          <h3 className={`text-[0.75rem] font-semibold mb-1 text-center
+            ${isDark ? 'text-cyan-200' : 'text-cyan-700'}
+          `}>
+            {title}
+          </h3>
+          <p className={`text-[0.7rem] text-center leading-tight
+            ${isDark ? 'text-gray-200' : 'text-gray-700'}
+          `}>
+            {description}
+          </p>
+        </div>
       </div>
-      <h3 className="text-xl font-bold text-primary mb-4">{title}</h3>
-      <p className="text-secondary leading-relaxed">{description}</p>
     </div>
   );
 };
