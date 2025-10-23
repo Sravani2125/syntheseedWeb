@@ -100,14 +100,8 @@
 // };
 
 // export default FeaturesSection;
-import React from 'react'
-
 const FeaturesSection = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div />;
+};
 
-export default FeaturesSection
+export default FeaturesSection;

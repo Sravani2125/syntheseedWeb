@@ -33,26 +33,27 @@ const Header = () => {
   };
 
   return (
-    <header
-      className={`fixed top-1 left-20 right-20 z-50 transition-all rounded-xl duration-300 ${isScrolled
-          ? 'backdrop-blur-lg bg-black/35 shadow-lg border-b border-white/10 py-3'
-          : 'backdrop-blur-xl bg-black/30 shadow-md py-3'
-        }`}
-      style={{ WebkitBackdropFilter: 'blur(16px)' }}
-    >
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2 mb-4">
+    <header className="fixed top-3 left-0 right-0 z-50">
+      <div className="px-3 sm:px-4">
+        <div
+          className={`mx-auto max-w-7xl rounded-xl transition-all duration-300 ${isScrolled
+            ? 'backdrop-blur-lg bg-black/35 shadow-lg border-b border-white/10 py-5'
+            : 'backdrop-blur-xl bg-black/30 shadow-md py-5'
+          } px-4 sm:px-6`}
+          style={{ WebkitBackdropFilter: 'blur(16px)' }}
+        >
+          <div className="flex items-center justify-between w-full gap-3">
+          <div className="flex items-center space-x-2 min-w-0">
             <img src={logo} alt="Syntheseed Logo" className="w-10 h-10 object-contain" />
             <span
-              className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-[rgb(var(--header-text))]'
+              className={`text-xl font-bold truncate ${theme === 'dark' ? 'text-white' : 'text-[rgb(var(--header-text))]'
                 }`}
             >
               Syntheseed
             </span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-7 ml-12">
+          <nav className="hidden md:flex items-center gap-7 md:ml-12">
             {navItems.map((item) => (
               <button
                 key={item.href}
@@ -64,7 +65,7 @@ const Header = () => {
               </button>
             ))}
           </nav>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {/* Login Button: strong cyan gradient */}
             <a
               href="https://app.syntheseed.com/login/"
@@ -110,10 +111,11 @@ const Header = () => {
               )}
             </button>
           </div>
+          </div>
         </div>
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden mt-4 bg-black/35 backdrop-blur-xl rounded-xl p-5 animate-fade-in border border-white/15 flex flex-col gap-1">
+          <nav className="md:hidden mt-3 bg-black/35 backdrop-blur-xl rounded-xl p-4 animate-fade-in border border-white/15 flex flex-col gap-2">
             {navItems.map((item) => (
               <button
                 key={item.href}

@@ -31,7 +31,7 @@ const steps = [
   }
 ];
 
-const circleSize = 170;
+// responsive sizes will be handled via tailwind classes instead of a fixed circleSize
 
 const ProcessSection = () => {
   const { ref, isVisible } = useScrollAnimation();
@@ -78,50 +78,35 @@ const ProcessSection = () => {
           >
             Capture and expand ideas, validate with AI and experts, research patents deeply, align go-to-market plans, and build your idea—all in one place.
           </div>
-          {/* Steps */}
-          <div className="flex flex-row flex-nowrap justify-center items-start w-full gap-x-2 max-w-[1460px] mx-auto">
-            {steps.map((step) => (
-              <div
-                key={step.number}
-                className="flex flex-col items-center text-center"
-                style={{
-                  width: 'min(370px,24vw)',
-                  minWidth: 240,
-                  maxWidth: 370
-                }}
-              >
-                <div
-                  className="rounded-full flex items-center justify-center border-4 shadow-lg bg-white dark:bg-[#232a37] mb-2"
-                  style={{
-                    width: circleSize,
-                    height: circleSize,
-                    borderColor: cyan,
-                  }}
-                >
-                  <img
-                    src={step.image}
-                    alt={step.title}
-                    className="rounded-full object-cover"
-                    style={{
-                      width: circleSize - 28,
-                      height: circleSize - 28,
-                    }}
-                  />
+          {/* Steps: responsive grid that stacks on mobile */}
+          <div className="w-full max-w-[1460px] mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+              {steps.map((step) => (
+                <div key={step.number} className="flex flex-col items-center text-center w-full px-3">
+                  <div
+                    className="rounded-full flex items-center justify-center border-4 shadow-lg bg-white dark:bg-[#232a37] mb-3 p-2"
+                    style={{ borderColor: cyan }}
+                  >
+                    {/* responsive avatar sizes: small on mobile, larger on desktop */}
+                    <img
+                      src={step.image}
+                      alt={step.title}
+                      className="rounded-full object-cover w-20 h-20 sm:w-28 sm:h-28 lg:w-40 lg:h-40"
+                    />
+                  </div>
+
+                  <div className="font-bold text-sm sm:text-base uppercase tracking-widest mt-1" style={{ color: cyan }}>
+                    {step.number}
+                  </div>
+                  <div className="font-semibold text-lg sm:text-xl mt-1 mb-2" style={{ color: isDark ? '#fff' : '#181e27' }}>
+                    {step.title}
+                  </div>
+                  <div className="text-sm sm:text-base leading-relaxed px-2" style={{ color: isDark ? '#e0e0e0' : '#555', whiteSpace: 'pre-line' }}>
+                    {step.description}
+                  </div>
                 </div>
-                <div
-                  className="font-bold text-base uppercase tracking-widest mt-2"
-                  style={{ color: cyan }}
-                >
-                  {step.number}
-                </div>
-                <div className="font-semibold text-xl mt-1 mb-2" style={{ color: isDark ? '#fff' : '#181e27' }}>
-                  {step.title}
-                </div>
-                <div className="text-base leading-relaxed px-2" style={{ color: isDark ? '#e0e0e0' : '#555', whiteSpace: "pre-line" }}>
-                  {step.description}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

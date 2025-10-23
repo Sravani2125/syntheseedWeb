@@ -36,49 +36,46 @@ const canvasSections = [
   ]
 ];
 
-const ExampleCanvas = ({ isDark }) => (
-  <div className="h-full flex flex-col justify-center w-full">
-    <div className="flex flex-col gap-10 w-full h-full justify-center">
-      {canvasSections.map((row, rowIndex) => (
-        <div key={rowIndex} className="flex gap-10 w-full justify-center">
-          {row.map((section, colIndex) => (
-            <div
-              key={colIndex}
-              className={`flex flex-col items-center w-full rounded-xl border ${isDark ? 'border-gray-800 bg-[#151820]' : 'border-gray-200 bg-white'} px-7 py-9 shadow-xl`}
-              style={{
-                minHeight: 220,
-                flex: 1,
-                maxWidth: '100%',
-              }}
-            >
-              <div
-                className={`rounded-xl h-50 w-35 flex items-center justify-center shadow-inner mb-4 border-2 ${isDark ? 'bg-[#181d2b] border-gray-800' : 'bg-gray-50 border-gray-200'}`}
-              >
-                {section.img ? (
-                  <img
-                    src={section.img}
-                    alt={section.title}
-                    className=" w-auto object-contain rounded"
-                  />
-                ) : (
-                  <span className="opacity-60 text-xs">Image Here</span>
-                )}
-              </div>
-              <span className={`uppercase text-base font-bold tracking-wide mb-1 ${isDark ? 'text-cyan-200' : 'text-cyan-700'}`}>
-                {section.title}
-              </span>
-              <span className={`text-base text-center ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
-                {section.desc}
-              </span>
-            </div>
-          ))}
+type ExampleCanvasProps = {
+  isDark: boolean;
+};
+
+const ExampleCanvas: React.FC<ExampleCanvasProps> = ({ isDark }) => (
+  <div className="w-full">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {canvasSections.flat().map((section, idx) => (
+        <div
+          key={idx}
+          className={`flex flex-col items-center w-full rounded-xl border ${isDark ? 'border-gray-800 bg-[#151820]' : 'border-gray-200 bg-white'} px-6 py-6 shadow-xl`}
+          style={{ minHeight: 180 }}
+        >
+          <div
+            className={`rounded-lg flex items-center justify-center mb-4 border-2 ${isDark ? 'bg-[#181d2b] border-gray-800' : 'bg-gray-50 border-gray-200'}`}
+            style={{ padding: 12 }}
+          >
+            {section.img ? (
+              <img
+                src={section.img}
+                alt={section.title}
+                className="max-w-full max-h-36 object-contain rounded"
+              />
+            ) : (
+              <span className="opacity-60 text-xs">Image Here</span>
+            )}
+          </div>
+          <span className={`uppercase text-sm sm:text-base font-bold tracking-wide mb-1 ${isDark ? 'text-cyan-200' : 'text-cyan-700'}`}>
+            {section.title}
+          </span>
+          <span className={`text-sm text-center ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+            {section.desc}
+          </span>
         </div>
       ))}
     </div>
   </div>
 );
 
-const getCardClasses = (isDark) =>
+const getCardClasses = (isDark: boolean) =>
   isDark
     ? 'bg-[#23283e] border-gray-700 border shadow-lg'
     : 'bg-white/95 border-gray-200 border shadow-xl';

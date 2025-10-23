@@ -66,7 +66,7 @@ const ProductFeaturesSection = () => {
         {/* Content: Illustration and Grid */}
         <div
           ref={ref}
-          className={`max-w-[1500px] mx-auto transition-all duration-1000 flex flex-col lg:flex-row items-center lg:items-start gap-16 ${
+          className={`max-w-[1500px] mx-auto transition-all duration-1000 flex flex-col lg:flex-row items-center lg:items-start gap-12 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
@@ -75,27 +75,35 @@ const ProductFeaturesSection = () => {
             <img
               src={illustration}
               alt="Product Illustration"
-              // className="object-contain h-[545px] w-auto max-w-full rounded-xl shadow-lg"
-              style={{
-                minHeight: 360,
-                maxHeight: 570,
-              }}
+              className="w-full max-w-sm md:max-w-md lg:max-w-full h-auto rounded-xl shadow-lg object-contain"
             />
           </div>
-          {/* Card Grid column */}
+          {/* Card column: show responsive grid on small, original overlapping layout on lg+ */}
           <div className="flex-1 w-full flex flex-col">
-            <div className="relative flex flex-col items-center select-none">
-              <div className="flex flex-row justify-center gap-x-10 z-10 mb-[-40px]">
-                <FeatureCard {...products[0]} delay={0} />
+            {/* Mobile / tablet: responsive grid */}
+            <div className="w-full block lg:hidden">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+                {products.map((p, i) => (
+                  <FeatureCard key={p.title} {...p} delay={i * 60} />
+                ))}
               </div>
-              <div className="flex flex-row justify-center gap-x-10 z-20 mb-[-40px]">
-                <FeatureCard {...products[1]} delay={60} />
-                <FeatureCard {...products[2]} delay={120} />
-              </div>
-              <div className="flex flex-row justify-center gap-x-10 z-30">
-                <FeatureCard {...products[3]} delay={180} />
-                <FeatureCard {...products[4]} delay={240} />
-                <FeatureCard {...products[5]} delay={300} />
+            </div>
+
+            {/* Desktop (lg+): original overlapping rows */}
+            <div className="hidden lg:flex flex-col items-center select-none">
+              <div className="relative flex flex-col items-center select-none">
+                <div className="flex flex-row justify-center gap-x-10 z-10 mb-[-40px]">
+                  <FeatureCard {...products[0]} delay={0} />
+                </div>
+                <div className="flex flex-row justify-center gap-x-10 z-20 mb-[-40px]">
+                  <FeatureCard {...products[1]} delay={60} />
+                  <FeatureCard {...products[2]} delay={120} />
+                </div>
+                <div className="flex flex-row justify-center gap-x-10 z-30">
+                  <FeatureCard {...products[3]} delay={180} />
+                  <FeatureCard {...products[4]} delay={240} />
+                  <FeatureCard {...products[5]} delay={300} />
+                </div>
               </div>
             </div>
           </div>

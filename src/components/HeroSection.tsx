@@ -11,8 +11,8 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      <div className="absolute inset-0 -z-10">
+    <section id="home" className="min-h-screen w-screen flex items-center justify-center relative overflow-hidden pt-20">
+      <div className="absolute inset-0 -z-10 w-screen left-0">
         <ImageCarousel
           images={[
             'https://images.pexels.com/photos/274973/pexels-photo-274973.jpeg?auto=compress&cs=tinysrgb&w=1600',
@@ -26,11 +26,11 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto text-center px-4">
           <div className="relative z-10">
             <h1
-              className={`text-3xl md:text-5xl font-bold mb-6 animate-slide-up drop-shadow-2xl ${
+              className={`text-2xl sm:text-3xl md:text-5xl font-bold mb-6 animate-slide-up drop-shadow-2xl ${
                 isDark ? 'text-cyan-400' : 'text-cyan-700'
               }`}
             >
@@ -38,7 +38,7 @@ const HeroSection = () => {
             </h1>
 
             <p
-              className="text-xl md:text-2xl text-white max-w-2xl mx-auto font-semibold animate-slide-up drop-shadow-lg"
+              className="text-base sm:text-lg md:text-2xl text-white max-w-2xl mx-auto font-semibold animate-slide-up drop-shadow-lg"
               style={{ animationDelay: '0.2s' }}
             >
               Use the Power of Artificial Intelligence, Human Intelligence, and Digital Intelligence to Transform Abstract Thoughts into Reality
@@ -49,8 +49,8 @@ const HeroSection = () => {
             className="flex items-center justify-center animate-slide-up relative z-10 mt-8"
             style={{ animationDelay: '0.4s' }}
           >
-            <button onClick={handleGetStarted} className="btn-secondary">
-              Get started {'-->'}
+            <button onClick={handleGetStarted} className="btn-secondary px-6 py-3 sm:px-8 sm:py-4">
+              <span className="text-sm sm:text-base">Get started {'-->'}</span>
             </button>
           </div>
         </div>
