@@ -56,8 +56,8 @@ const ProductFeaturesSection = () => {
         {/* Centered Heading and Subtitle */}
         <div className="mb-12 text-center max-w-3xl mx-auto">
           <p className="text-sm font-semibold tracking-widest text-cyan-500 mb-2">PRODUCT</p>
-          <h2 className={`text-3xl font-bold mb-3 ${isDark ? 'text-cyan-400' : 'text-cyan-700'}`}>
-            Everything you need to go from spark to strategy
+          <h2 className={`text-3xl font-bold mb-3 ${isDark ? 'text-cyan-400' : 'text-cyan-500'}`}>
+            Everything you need to go from spark to launch
           </h2>
           <p className={`text-lg ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
             Capture and expand ideas, validate with AI, research patents deeply, align go-to-market plans, and build ideas—all in one place.

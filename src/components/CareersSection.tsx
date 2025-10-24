@@ -108,16 +108,16 @@ const CareersSection = () => {
             ))}
           </div>
 
-          <div className="mt-12 text-center glass-effect p-8 rounded-2xl">
-            <h3 className="text-2xl font-bold text-primary mb-4">Don't see a perfect fit?</h3>
-            <p className="text-secondary mb-6">
-              We're always looking for talented individuals. Send us your resume and tell us how you'd like to contribute.
-            </p>
-            <button className="btn-primary flex items-center space-x-2 mx-auto">
-              Send Application
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
+         <div className="mt-12 text-center">
+  <p className="text-secondary text-lg">
+    Don't see a perfect fit? Send your resume to{' '}
+    <a href="mailto:careers@syntheseed.com" className="text-cyan-600 hover:underline">
+      careers@syntheseed.com
+    </a>
+    .
+  </p>
+</div>
+
         </div>
       </div>
     </section>

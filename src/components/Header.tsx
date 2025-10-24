@@ -71,19 +71,11 @@ const Header = () => {
               href="https://app.syntheseed.com/login/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-block px-7 py-2 bg-gradient-to-r from-cyan-500 to-cyan-700 rounded-lg text-white font-semibold shadow-md hover:bg-cyan-600 hover:shadow-cyan-600/40 transition-all duration-200 hover:scale-105 focus:outline-cyan-400"
+              className="hidden md:inline-block px-7 py-2 bg-cyan-500 to-cyan-700 rounded-lg text-white font-semibold shadow-md hover:bg-cyan-600 hover:shadow-cyan-600/40 transition-all duration-200 hover:scale-105 focus:outline-cyan-400"
               style={{ minWidth: 108, textAlign: 'center' }}
             >
-              Login
+              Login/Register
             </a>
-            {/* Register Button: off-white/gray with cyan text */}
-            <button
-              onClick={() => scrollToSection('#contact')}
-              className="hidden md:inline-block px-7 py-2 bg-gradient-to-r from-gray-100 via-gray-50 to-gray-200 text-cyan-600 font-semibold rounded-lg shadow-md hover:bg-cyan-50 hover:text-cyan-700 hover:shadow-cyan-100/40 transition-all duration-200 hover:scale-105 focus:outline-cyan-400"
-              style={{ minWidth: 108, textAlign: 'center' }}
-            >
-              Register
-            </button>
             {/* Theme Switch */}
             <button
               onClick={toggleTheme}
@@ -133,14 +125,8 @@ const Header = () => {
                 rel="noopener noreferrer"
                 className="flex-1 px-4 py-2 bg-gradient-to-r from-cyan-500 to-cyan-700 text-white rounded-lg font-semibold shadow hover:bg-cyan-600 hover:shadow-cyan-600/40 transition-all hover:scale-105"
               >
-                Login
+                Login/Register
               </a>
-              <button
-                onClick={() => scrollToSection('#contact')}
-                className="flex-1 px-4 py-2 bg-gradient-to-r from-gray-100 via-gray-50 to-gray-200 text-cyan-600 rounded-lg font-semibold shadow hover:bg-cyan-50 hover:text-cyan-700 hover:shadow-cyan-100/40 transition-all hover:scale-105"
-              >
-                Register
-              </button>
             </div>
           </nav>
         )}

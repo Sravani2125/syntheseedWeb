@@ -41,7 +41,7 @@ const HeroSection = () => {
               className="text-base sm:text-lg md:text-2xl text-white max-w-2xl mx-auto font-semibold animate-slide-up drop-shadow-lg"
               style={{ animationDelay: '0.2s' }}
             >
-              Use the Power of Artificial Intelligence, Human Intelligence, and Digital Intelligence to Transform Abstract Thoughts into Reality
+              Use the Power of Artificial Intelligence, Human Intelligence, and Digital Intelligence to Securely Transform Abstract Thoughts into Reality
             </p>
           </div>
 
@@ -50,8 +50,9 @@ const HeroSection = () => {
             style={{ animationDelay: '0.4s' }}
           >
             <button onClick={handleGetStarted} className="btn-secondary px-6 py-3 sm:px-8 sm:py-4">
-              <span className="text-sm sm:text-base">Get started {'-->'}</span>
-            </button>
+  <span className="text-sm sm:text-base">Get started →</span>
+</button>
+
           </div>
         </div>
       </div>
