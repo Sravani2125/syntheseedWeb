@@ -3,11 +3,17 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import { Toaster } from 'react-hot-toast';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider>
+        <App />
+        <Toaster position="top-right" />
+      </ThemeProvider>
+    </Provider>
   </StrictMode>
 );
